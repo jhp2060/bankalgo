@@ -10,22 +10,27 @@ import javax.persistence.*;
 @Entity
 public class Benefit {
 
+    enum BenefitType {
+        ENROLLMENT,         // 가입
+        PRIME_RATE,         // 금리우대
+        DEDUCTION,          // 소득공제
+        TAX_EXEMPTION,      // 비과세
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column
+    private String name;
+
+    @Column
     @Enumerated(EnumType.STRING)
     private BenefitType type;
 
+    @Column
+    private String description;
+
     @ManyToOne
     private Product product;
-
-}
-
-enum BenefitType {
-    ENROLLMENT,         // 가입
-    PRIME_RATE,         // 금리우대
-    DEDUCTION,          // 소득공제
-    TAX_EXEMPTION,      // 비과세
 }
