@@ -14,7 +14,9 @@ public class Benefit {
         ENROLLMENT,         // 가입
         PRIME_RATE,         // 금리우대
         DEDUCTION,          // 소득공제
-        TAX_EXEMPTION,      // 비과세
+        TAX_FREE,           // 비과세
+        CHARGE_FREE,        // 수수료 면제
+        ETC,
     }
 
     @Id
