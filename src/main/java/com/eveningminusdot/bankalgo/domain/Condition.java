@@ -24,9 +24,12 @@ public class Condition {
     private String description;
 
     @Column
+    private String inquiryContent;
+
+    @Column
     @Enumerated(EnumType.STRING)
     private ConditionType type;
 
-    @ManyToMany
-    Set<User> users;
+    @OneToMany
+    Set<UserCondition> users;
 }
