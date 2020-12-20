@@ -31,5 +31,8 @@ public class Condition {
     private ConditionType type;
 
     @OneToMany
-    Set<UserCondition> users;
+    private Set<UserCondition> users;
+
+    @ManyToMany
+    private Set<Benefit> benefits;
 }

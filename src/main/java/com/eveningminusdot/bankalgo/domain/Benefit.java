@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Getter
 @NoArgsConstructor
@@ -35,4 +36,7 @@ public class Benefit {
 
     @ManyToOne
     private Product product;
+
+    @ManyToMany
+    private Set<Condition> conditions;
 }
