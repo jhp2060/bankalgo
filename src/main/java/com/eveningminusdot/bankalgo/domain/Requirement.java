@@ -7,8 +7,8 @@ import java.util.Set;
 
 @Entity
 @NoArgsConstructor
-public class Condition {
-    enum ConditionType {
+public class Requirement {
+    enum RequirementType {
         AGE,                    // 연력
         HAVING_HOUSE,           // 주택 보유
         HOUSE_HOLDER,           // 세대주
@@ -28,10 +28,10 @@ public class Condition {
 
     @Column
     @Enumerated(EnumType.STRING)
-    private ConditionType type;
+    private RequirementType type;
 
     @OneToMany
-    private Set<UserCondition> users;
+    private Set<UserRequirement> users;
 
     @ManyToMany
     private Set<Benefit> benefits;

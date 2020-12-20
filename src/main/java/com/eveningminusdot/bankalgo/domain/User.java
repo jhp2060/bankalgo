@@ -2,7 +2,6 @@ package com.eveningminusdot.bankalgo.domain;
 
 
 import lombok.NoArgsConstructor;
-import org.springframework.boot.context.properties.bind.DefaultValue;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -38,5 +37,5 @@ public class User {
     private int annulIncome;
 
     @OneToMany(mappedBy = "user")
-    Set<UserCondition> conditions;
+    Set<UserRequirement> requirements;
 }

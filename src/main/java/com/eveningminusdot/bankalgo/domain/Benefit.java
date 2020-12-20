@@ -38,5 +38,5 @@ public class Benefit {
     private Product product;
 
     @ManyToMany
-    private Set<Condition> conditions;
+    private Set<Requirement> requirements;
 }

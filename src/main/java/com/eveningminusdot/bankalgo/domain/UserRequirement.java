@@ -7,7 +7,7 @@ import java.time.LocalDate;
 
 @Entity
 @NoArgsConstructor
-public class UserCondition {
+public class UserRequirement {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -16,7 +16,7 @@ public class UserCondition {
     private User user;
 
     @ManyToOne
-    private Condition condition;
+    private Requirement requirement;
 
     @Column
     private boolean isSatisfied;
