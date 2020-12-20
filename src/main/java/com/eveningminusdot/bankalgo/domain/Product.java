@@ -4,13 +4,14 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Getter
 @NoArgsConstructor
 @Entity
 public class Product {
 
-    enum ProductType {
+    public enum ProductType {
         GENERAL_DEPOSIT,        // 요구불예금
         INSTALLMENT_SAVING,     // 적금
         TIME_DEPOSIT,           // 예금
@@ -33,4 +34,7 @@ public class Product {
     @Column
     @Enumerated(EnumType.STRING)
     private ProductType type;
+
+    @OneToMany
+    private Set<Benefit> benefits;
 }
