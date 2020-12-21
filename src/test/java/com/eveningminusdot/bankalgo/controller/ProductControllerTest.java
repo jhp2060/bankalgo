@@ -1,30 +1,69 @@
 package com.eveningminusdot.bankalgo.controller;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.assertj.core.api.Assertions.assertThat;
 
-
+import com.eveningminusdot.bankalgo.domain.Product;
+import com.eveningminusdot.bankalgo.respository.ProductJPARepository;
+import com.github.javafaker.Faker;
+import org.junit.After;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.web.client.TestRestTemplate;
+import org.springframework.boot.web.server.LocalServerPort;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
-import org.springframework.test.web.servlet.MockMvc;
+
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Locale;
 
 @RunWith(SpringRunner.class)
-@WebMvcTest
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class ProductControllerTest {
+
+    @LocalServerPort
+    private int port;
+
     @Autowired
-    private MockMvc mockMvc;
+    private TestRestTemplate restTemplate;
+
+    @Autowired
+    private ProductJPARepository productRepo;
+
+    @After
+    public void tearDown() throws Exception {
+        productRepo.deleteAll();
+    }
 
     @Test
-    public void testHello() throws Exception {
-        mockMvc.perform(get("/hello").param("name", "둘리"))
-                .andExpect(status().isOk())
-                .andExpect(content().string("Hello : 둘리"))
-                .andDo(print());
+    public void findAllSuccess() throws Exception {
+
+        for (int i = 0; i < 10; ++i) {
+            Faker faker = new Faker(new Locale("ko-KO"));
+            String productName = faker.lorem().sentence(2);
+            String description = faker.lorem().sentence(30);
+
+            productRepo.save(Product.builder()
+                    .name(productName)
+                    .description(description)
+                    .type(Product.ProductType.CREDIT_CARD.toString())
+                    .build()
+            );
+        }
+
+        String responseUrl = "http://localhost:"+port+"/api/v1/products";
+
+        ResponseEntity<List> responseEntity
+                = restTemplate.getForEntity(responseUrl, List.class);
+
+        LinkedHashMap<String, String> now =
+                (LinkedHashMap<String, String>) responseEntity.getBody().get(0);
+
+        assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.OK);
+        assertThat(responseEntity.getBody().size() == 10);
     }
 
 }
