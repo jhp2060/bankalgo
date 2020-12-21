@@ -1,4 +1,4 @@
-package com.eveningminusdot.bankalgo;
+package com.eveningminusdot.bankalgo.service;
 
 import com.eveningminusdot.bankalgo.domain.Product;
 import com.eveningminusdot.bankalgo.dto.ProductDetailDto;
