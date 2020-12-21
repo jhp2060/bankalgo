@@ -1,7 +1,11 @@
 package com.eveningminusdot.bankalgo.dto;
 
 import com.eveningminusdot.bankalgo.domain.Product;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
+@Getter
+@NoArgsConstructor
 public class ProductSimpleDto {
     private Long id;
     private String name;
