@@ -1,5 +1,6 @@
 package com.eveningminusdot.bankalgo.domain;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -11,7 +12,7 @@ import java.util.Set;
 @Entity
 public class Benefit {
 
-    enum BenefitType {
+    public enum BenefitType {
         ENROLLMENT,         // 가입
         PRIME_RATE,         // 금리우대
         DEDUCTION,          // 소득공제
@@ -39,4 +40,13 @@ public class Benefit {
 
     @ManyToMany
     private Set<Requirement> requirements;
+
+    @Builder
+    public Benefit(String name, String type,
+                   String description, Product product) {
+        this.name = name;
+        this.type = BenefitType.valueOf(type);
+        this.description = description;
+        this.product = product;
+    }
 }
