@@ -41,8 +41,8 @@ public class ProductControllerTest {
     @Test
     public void findAllSuccess() throws Exception {
 
+        Faker faker = new Faker(new Locale("ko-KO"));
         for (int i = 0; i < 10; ++i) {
-            Faker faker = new Faker(new Locale("ko-KO"));
             String productName = faker.lorem().sentence(2);
             String description = faker.lorem().sentence(30);
 
