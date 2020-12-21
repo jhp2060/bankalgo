@@ -29,10 +29,4 @@ public class Requirement {
     @Column
     @Enumerated(EnumType.STRING)
     private RequirementType type;
-
-    @OneToMany
-    private Set<UserRequirement> users;
-
-    @ManyToMany
-    private Set<Benefit> benefits;
 }

@@ -35,7 +35,4 @@ public class User {
 
     @Column
     private int annulIncome;
-
-    @OneToMany(mappedBy = "user")
-    Set<UserRequirement> requirements;
 }

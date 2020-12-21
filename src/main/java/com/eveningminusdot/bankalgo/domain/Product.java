@@ -1,5 +1,6 @@
 package com.eveningminusdot.bankalgo.domain;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -35,6 +36,10 @@ public class Product {
     @Enumerated(EnumType.STRING)
     private ProductType type;
 
-    @OneToMany
-    private Set<Benefit> benefits;
+    @Builder
+    public Product(String name, String description, String type) {
+        this.name = name;
+        this.description = description;
+        this.type = ProductType.valueOf(type);
+    }
 }
