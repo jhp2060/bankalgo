@@ -2,6 +2,7 @@ package com.eveningminusdot.bankalgo.service;
 
 import com.eveningminusdot.bankalgo.domain.Benefit;
 import com.eveningminusdot.bankalgo.domain.Product;
+import com.eveningminusdot.bankalgo.dto.BenefitSimpleDto;
 import com.eveningminusdot.bankalgo.dto.ProductDetailDto;
 import com.eveningminusdot.bankalgo.dto.ProductSimpleDto;
 import com.eveningminusdot.bankalgo.respository.BenefitJPARepository;
@@ -10,6 +11,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -29,11 +31,14 @@ public class ProductService {
 
     public ProductDetailDto findById(Long id) {
         List<Benefit> benefits = benefitRepository.findByProductId(id);
+        Set<BenefitSimpleDto> benefitSimpleDtos = new HashSet<>();
+        for (Benefit b : benefits)
+            benefitSimpleDtos.add(new BenefitSimpleDto(b));
         return new ProductDetailDto(
                 productRepository.findById(id).orElseThrow(
                 () -> new IllegalArgumentException(
                         "No Product with id " + id + ".\n"
-                )), (Set<Benefit>)benefits
+                )), benefitSimpleDtos
         );
     }
 }
