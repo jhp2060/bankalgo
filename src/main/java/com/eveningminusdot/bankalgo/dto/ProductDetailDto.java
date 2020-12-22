@@ -14,9 +14,9 @@ public class ProductDetailDto {
     private String name;
     private String type;
     private String description;
-    private Set<Benefit> benefits;
+    private Set<BenefitSimpleDto> benefits;
 
-    public ProductDetailDto(Product product, Set<Benefit> benefits) {
+    public ProductDetailDto(Product product, Set<BenefitSimpleDto> benefits) {
         this.id = product.getId();
         this.name = product.getName();
         this.type = product.getType().toString();
