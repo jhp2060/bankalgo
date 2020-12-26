@@ -31,8 +31,9 @@ public class User {
     private Date birth;
 
     @Column
+    @Enumerated(EnumType.STRING)
     private JobType job;
 
     @Column
-    private int annulIncome;
+    private int annualIncome;
 }
