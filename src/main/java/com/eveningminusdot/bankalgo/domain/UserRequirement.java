@@ -13,9 +13,11 @@ public class UserRequirement {
     private Long id;
 
     @ManyToOne
+    @JoinColumn(name="user_id")
     private User user;
 
     @ManyToOne
+    @JoinColumn(name="requirement_id")
     private Requirement requirement;
 
     @Column

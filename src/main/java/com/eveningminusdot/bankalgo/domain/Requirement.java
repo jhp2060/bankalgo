@@ -29,4 +29,7 @@ public class Requirement {
     @Column
     @Enumerated(EnumType.STRING)
     private RequirementType type;
+
+    @ManyToMany(mappedBy = "requirements")
+    Set<Benefit> benefits;
 }

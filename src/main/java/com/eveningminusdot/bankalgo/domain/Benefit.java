@@ -36,9 +36,15 @@ public class Benefit {
     private String description;
 
     @ManyToOne
+    @JoinColumn(name="product_id")
     private Product product;
 
     @ManyToMany
+    @JoinTable(
+            name = "benefit_requirement",
+            joinColumns = @JoinColumn(name = "benefit_id"),
+            inverseJoinColumns = @JoinColumn(name = "requirement_id")
+    )
     private Set<Requirement> requirements;
 
     @Builder
