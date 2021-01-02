@@ -1,3 +1,7 @@
+server:
+#  port: 8000
+#  8080 for jenkins
+
 spring:
   jpa:
     show_sql: true
@@ -8,7 +12,7 @@ spring:
     generate-ddl: true
     hibernate:
       ddl-auto: update
-    database: mysql
+#    database: mysql
   datasource:
     driver-class-name: org.mariadb.jdbc.Driver
     url: jdbc:mariadb://localhost:3306/bankalgo?serverTimeZone=Asia/Seoul
