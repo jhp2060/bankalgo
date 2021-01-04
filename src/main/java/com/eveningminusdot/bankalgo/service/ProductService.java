@@ -21,8 +21,12 @@ public class ProductService {
     private final ProductJPARepository productRepository;
     private final BenefitJPARepository benefitRepository;
 
-    public List<ProductSimpleDto> findAll() {
-        List<Product> entities = productRepository.findAll();
+    public List<ProductSimpleDto> findAll(String type) {
+        List<Product> entities;
+        if (type.equals(""))
+            entities = productRepository.findAll();
+        else
+            entities = productRepository.findAllByType(Product.ProductType.valueOf(type));
         List<ProductSimpleDto> ret = new ArrayList<>();
         for (Product p : entities)
             ret.add(new ProductSimpleDto(p));
