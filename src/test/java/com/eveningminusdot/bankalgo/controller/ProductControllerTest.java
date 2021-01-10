@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.web.server.LocalServerPort;
+import org.springframework.context.annotation.Profile;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -22,8 +23,10 @@ import org.springframework.test.context.junit4.SpringRunner;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
 
 @RunWith(SpringRunner.class)
+@Profile("test")
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class ProductControllerTest {
 
@@ -41,7 +44,7 @@ public class ProductControllerTest {
 
     @After
     public void tearDown(){
-        // cascade 고
+        // cascade
         benefitRepo.deleteAll();
         productRepo.deleteAll();
     }
@@ -69,7 +72,7 @@ public class ProductControllerTest {
 
         @SuppressWarnings("unchecked")
         LinkedHashMap<String, String> now =
-                (LinkedHashMap<String, String>) (responseEntity.getBody()).get(0);
+                (LinkedHashMap<String, String>) (Objects.requireNonNull(responseEntity.getBody())).get(0);
 
         assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.OK);
         assertThat(responseEntity.getBody().size()).isEqualTo(10);
