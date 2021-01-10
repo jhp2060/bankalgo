@@ -1,0 +1,18 @@
+spring:
+  profiles:
+    value: bankalgo
+  jpa:
+    show_sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL57Dialect
+        storage_engine: innodb
+    generate-ddl: true
+    hibernate:
+      ddl-auto: update
+  datasource:
+    driver-class-name: org.mariadb.jdbc.Driver
+    url: jdbc:mariadb://localhost:3306/bankalgo?serverTimeZone=Asia/Seoul
+    name: bankalgo
+    username: bankalgo
+    password: 1234
