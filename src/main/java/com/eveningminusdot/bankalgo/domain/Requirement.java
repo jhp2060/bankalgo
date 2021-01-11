@@ -1,14 +1,17 @@
 package com.eveningminusdot.bankalgo.domain;
 
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.Set;
 
 @Entity
+@Getter
 @NoArgsConstructor
 public class Requirement {
-    enum RequirementType {
+
+    public enum RequirementType {
         AGE,                    // 연력
         HAVING_HOUSE,           // 주택 보유
         HOUSE_HOLDER,           // 세대주
