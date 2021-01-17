@@ -49,10 +49,12 @@ public class Benefit {
 
     @Builder
     public Benefit(String name, String type,
-                   String description, Product product) {
+                   String description, Product product,
+                   Set<Requirement> requirements) {
         this.name = name;
         this.type = BenefitType.valueOf(type);
         this.description = description;
         this.product = product;
+        this.requirements = requirements;
     }
 }

@@ -1,13 +1,17 @@
 package com.eveningminusdot.bankalgo.domain;
 
+import com.sun.istack.Nullable;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.Set;
 
 @Entity
 @Getter
+@Setter
 @NoArgsConstructor
 public class Requirement {
 
@@ -35,4 +39,13 @@ public class Requirement {
 
     @ManyToMany(mappedBy = "requirements")
     Set<Benefit> benefits;
+
+    @Builder
+    public Requirement(String description, String inquiryContent,
+                       RequirementType type, Set<Benefit> benefits) {
+        this.description = description;
+        this.inquiryContent = inquiryContent;
+        this.type = type;
+        this.benefits = benefits;
+    }
 }
