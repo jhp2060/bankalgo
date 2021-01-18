@@ -10,6 +10,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.context.annotation.Profile;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.HashSet;
@@ -20,6 +21,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@Profile("test")
 public class BenefitJPARepositoryTest {
 
     @Autowired
@@ -77,7 +79,7 @@ public class BenefitJPARepositoryTest {
     @Test
     public void findByRequirementsContainsSuccess() {
         Requirement[] requirementArray = new Requirement[5];
-        Set<Requirement> requirements = new HashSet<Requirement>();
+        Set<Requirement> requirements = new HashSet<>();
         for (int i = 0; i < 5; ++i) {
             Requirement r = requirementRepo.save(Requirement.builder()
                     .description(faker.lorem().sentence(30))
