@@ -16,7 +16,7 @@ import java.util.Set;
 public class Requirement {
 
     public enum RequirementType {
-        AGE,                    // 연력
+        AGE,                    // 연령
         HAVING_HOUSE,           // 주택 보유
         HOUSE_HOLDER,           // 세대주
         CREDIT_RATING,          // 신용등급
